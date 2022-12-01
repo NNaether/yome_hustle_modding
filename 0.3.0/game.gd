@@ -768,7 +768,7 @@ func _process(delta):
 		camera.global_position.x = camera.limit_left + get_viewport_rect().size.x / 2
 	
 	if game_started and not is_ghost:
-		camera.zoom = Vector2.ONE
+		# camera.zoom = Vector2.ONE
 		var dist = p1.get_hurtbox_center().y - p2.get_hurtbox_center().y
 		if abs(p1.get_hurtbox_center().y - p2.get_hurtbox_center().y) > CAMERA_MAX_Y_DIST:
 			var dist_ratio = abs(dist) / float(CAMERA_MAX_Y_DIST)
