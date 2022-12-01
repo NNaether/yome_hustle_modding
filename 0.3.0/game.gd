@@ -872,9 +872,13 @@ func super_dim():
 
 func _unhandled_input(event:InputEvent):
 	if is_afterimage:
-		return 
+		return
 	if event is InputEventMouseButton:
 		if event.pressed:
+			if event.button_index == BUTTON_WHEEL_UP:
+				camera.zoom += Vector2(0.1, 0.1)
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				camera.zoom -= Vector2(0.1, 0.1)
 			drag_position = camera.get_local_mouse_position()
 			raise()
 		else :
