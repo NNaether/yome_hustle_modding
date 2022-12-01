@@ -103,6 +103,10 @@ var ghost_p1_actionable = false
 var ghost_p2_actionable = false
 var made_afterimage = false
 
+var zoom_min = Vector2(0.200001, 0.200001)
+var zoom_max = Vector2(2, 2)
+var zoom_speed = Vector2(0.1, 0.1)
+
 
 func get_ticks_left():
 	return time - Utils.int_min(current_tick, time)
@@ -876,9 +880,11 @@ func _unhandled_input(event:InputEvent):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if event.button_index == BUTTON_WHEEL_UP:
-				camera.zoom += Vector2(0.1, 0.1)
+				if camera.zoom > zoom_min:
+					camera.zoom -= zoom_speed
 			if event.button_index == BUTTON_WHEEL_DOWN:
-				camera.zoom -= Vector2(0.1, 0.1)
+				if camera.zoom < zoom_max:
+					camera.zoom += zoom_speed
 			drag_position = camera.get_local_mouse_position()
 			raise()
 		else :
